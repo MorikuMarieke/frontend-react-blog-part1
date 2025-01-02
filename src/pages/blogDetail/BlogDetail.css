@@ -1,0 +1,15 @@
+.blog-detail-outer-container {
+    background-color: var(--color-tertiary);
+    flex: 0 1 100%;
+}
+
+.blog-detail {
+    align-items: flex-start;
+    flex: 0 1 100%;
+    width: 100%;
+}
+
+.blog-detail h1,
+.blog-detail p {
+    text-align: left;
+}

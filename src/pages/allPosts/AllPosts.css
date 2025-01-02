@@ -1,0 +1,38 @@
+.all-posts-outer-container {
+    background-color: var(--color-tertiary);
+    flex: 0 1 100%;
+}
+
+.all-posts {
+    align-items: center;
+    flex: 0 1 100%;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.post-item {
+    border: 2px var(--color-white) solid;
+    border-radius: 0.3em;
+    background-color: var(--color-secondary);
+    padding: 1em;
+    margin: 0.5em 0;
+    list-style: none;
+}
+
+.blog-post-info {
+    text-align: left;
+}
+
+.all-posts h1 {
+    font-size: 2.5rem;
+}
+
+.all-posts a, a:visited, .blog-post-info {
+    color: var(--color-tertiary);
+    text-decoration: none;
+}
+
+.all-posts a:hover {
+    color: var(--color-primary);
+    text-decoration: underline;
+}

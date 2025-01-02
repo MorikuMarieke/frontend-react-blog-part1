@@ -1,0 +1,6 @@
+.footer-container {
+    display: flex;
+    align-items: center;
+    color: var(--color-secondary);
+    background-color: var(--color-primary);
+}

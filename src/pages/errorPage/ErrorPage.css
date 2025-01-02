@@ -1,0 +1,11 @@
+.error-container {
+    background-color: var(--color-tertiary);
+    flex: 0 1 100%;
+}
+
+.error {
+    align-items: center;
+    flex: 0 1 100%;
+    justify-content: center;
+    width: 100%;
+}

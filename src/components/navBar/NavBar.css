@@ -1,0 +1,41 @@
+/*CSS for Navigation bar*/
+
+.nav-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    flex: 1 0 auto;
+    padding: 0 1em;
+}
+
+.nav-image-wrapper {
+    width: 200px;
+}
+
+.nav-bar-logo {
+    width: 100%;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    flex: 0 0 350px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+}
+
+.active-link {
+    color: var(--color-primary);
+    border-bottom: 2px solid var(--color-primary);
+}
+
+.default-link {
+    color: var(--color-white);
+    border-bottom: 1px solid transparent;
+}

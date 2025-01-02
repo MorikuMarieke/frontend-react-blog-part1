@@ -1,0 +1,32 @@
+.blog-post-outer-container {
+    background-color: var(--color-tertiary);
+    flex: 0 1 100%;
+}
+
+.blog {
+    align-items: center;
+    flex: 0 1 100%;
+    justify-content: center;
+    width: 100%;
+}
+
+.blog-post-text {
+    height: 12em;
+}
+
+.submit-blog-post {
+    display: flex;
+    flex-direction: column;
+    flex: 0 1 auto;
+    margin-top: 1em;
+    width: 500px;
+}
+
+.submit-blog-post label {
+    color: var(--color-secondary);
+    font-size: 0.7em;
+}
+
+.submit-blog-post input {
+    margin-bottom: 0.5em;
+}
