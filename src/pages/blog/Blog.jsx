@@ -2,9 +2,13 @@ import React, {useState} from "react";
 import './Blog.css';
 import InputField from "../../components/inputField/InputField.jsx";
 import Button from "../../components/button/Button.jsx";
+import readTimeCalculator from "../../assets/helpers/readTimeCalculator.js";
+import { useNavigate } from "react-router-dom";
 
 
 function Blog() {
+
+    const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
         title: '',
@@ -16,12 +20,18 @@ function Blog() {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(formData);
+        navigate('/alle-blog-posts')
     };
 
     const handleInputChange = (e) => {
+        const currentDate = new Date().toISOString();
         setFormData({
             ...formData,
             [e.target.name]: e.target.value,
+            comments: 0,
+            shares: 0,
+            created: currentDate,
+            readTime: readTimeCalculator(formData.content),
         });
     };
 
