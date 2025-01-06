@@ -12,7 +12,7 @@
 
 .post-item {
     border: 2px var(--color-white) solid;
-    border-radius: 0.3em;
+    border-radius: 0.5em;
     background-color: var(--color-secondary);
     padding: 1em;
     margin: 0.5em 0;

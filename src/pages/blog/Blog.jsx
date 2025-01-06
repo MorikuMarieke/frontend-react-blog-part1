@@ -3,7 +3,8 @@ import './Blog.css';
 import InputField from "../../components/inputField/InputField.jsx";
 import Button from "../../components/button/Button.jsx";
 import readTimeCalculator from "../../assets/helpers/readTimeCalculator.js";
-import { useNavigate } from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
+import axios from 'axios';
 
 
 function Blog() {
@@ -17,11 +18,31 @@ function Blog() {
         content: '',
     });
 
-    const handleSubmit = (event) => {
+    const [successMessage, setSuccessMessage] = useState(false);
+    const [newBlogId, setNewBlogId] = useState(null);
+    const [errorMessage, setErrorMessage] = useState(null)
+
+    async function handleSubmit(event) {
         event.preventDefault();
-        console.log(formData);
-        navigate('/alle-blog-posts')
-    };
+
+        try {
+            const response = await axios.post(`http://localhost:3000/posts`,
+                {
+                    ...formData,
+                    shares: 0,
+                    comments: 0,
+                    created: new Date().toISOString(),
+                    readTime: readTimeCalculator(formData.content),
+                });
+            setNewBlogId(response.data.id);
+            console.log('De blog is succesvol verzameld! 🌈');
+            setSuccessMessage(true);
+            // navigate(`/blog/${newBlogId}`);
+        } catch (err) {
+            console.error(err);
+            setErrorMessage(true)
+        }
+    }
 
     const handleInputChange = (e) => {
         const currentDate = new Date().toISOString();
@@ -39,6 +60,13 @@ function Blog() {
         <div className="outer-container blog-post-outer-container">
             <div className="inner-container blog">
                 <h1>Post toevoegen</h1>
+                {errorMessage && (
+                    <p className="error-text">Er is iets fout gegaan. Probeer het opnieuw.</p>
+                )};
+                {successMessage && (
+                    <p>Blogpost succesvol toegevoegd! Je kunt deze <NavLink to={`/blog/${newBlogId}`}>hier</NavLink> bekijken.</p>
+                )}
+                {!successMessage && (
                 <form className="submit-blog-post" onSubmit={handleSubmit}>
                     <InputField
                         inputText="Titel"
@@ -95,6 +123,7 @@ function Blog() {
                         buttonText="Toevoegen"
                     />
                 </form>
+                )};
             </div>
         </div>
     )

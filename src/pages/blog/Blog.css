@@ -30,3 +30,7 @@
 .submit-blog-post input {
     margin-bottom: 0.5em;
 }
+
+.error-text {
+    color: var(--color-red);
+}

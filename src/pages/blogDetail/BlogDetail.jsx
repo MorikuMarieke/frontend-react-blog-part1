@@ -7,53 +7,62 @@ import dateStringFormat from "../../assets/helpers/dateStringFormat.js";
 
 
 function BlogDetail() {
-    const [posts, setPosts] = useState([]);
+    const [post, setPost] = useState([]);
     const [error, setError] = useState(null);
-
     const {id} = useParams();
 
     useEffect(() => {
-        async function fetchPosts() {
-            console.log("Het is gelukt")
+        async function fetchPost() {
             try {
                 setError(null);
-                const response = await axios.get('http://localhost:3000/posts');
-                setPosts(response.data)
+                const response = await axios.get(`http://localhost:3000/posts/${id}`);
+                setPost(response.data);
+                console.log(`Het ophalen van post ${response.data.id} ${response.data.title} is gelukt`);
             } catch (err) {
-                setError(err.message || "Unable to fetch post data.");
+                if (err.response && err.response.status === 404) {
+                    setError("Post not found. The requested post does not exist.")
+                }
+                else {
+                    setError(err.message || "Unable to fetch post data.");
+                }
                 console.error(err);
             }
         }
 
-        fetchPosts();
+        fetchPost();
     }, []);
 
-    const {title, readTime, subtitle, author, created, content, comments, shares} = posts.find((post) => {
-        return post.id.toString() === id;
-    });
+    const {title, readTime, subtitle, author, created, content, comments, shares} = post;
 
     return (
         <>
-        {error ? (
+            {error ? (
                 <article className="outer-container blog-detail-outer-container">
                     <div className="inner-container blog-detail">
-                        <h1>Blogpost niet gevonden</h1>
-                        <Link to="/alle-blog-posts" className="back-to-overview">Terug naar de overzichtspagina</Link>
+                        <article className="blog-card">
+                            <h1>Blogpost niet gevonden</h1>
+                            <p>{error}</p>
+                            <Link to="/alle-blog-posts" className="back-to-overview">Terug naar de
+                                overzichtspagina</Link>
+                        </article>
                     </div>
                 </article>
-            ) : (
+                ) : (
                 <article className="outer-container blog-detail-outer-container">
                     <div className="inner-container blog-detail">
-                        <h1>{title} ({readTime} minuten)</h1>
-                        <h2>{subtitle}</h2>
-                        <p>Geschreven door {author} op {dateStringFormat(created)}</p>
-                        <p>{content}</p>
-                        <p>{comments} reacties | {shares} keer gedeeld.</p>
-                        <Link to="/alle-blog-posts" className="back-to-overview">Terug naar de overzichtspagina</Link>
+                        <article className="blog-card">
+                            <h1>{title} ({readTime} minuten)</h1>
+                            <h2>{subtitle}</h2>
+                            <p>Geschreven door {author} op {dateStringFormat(created)}</p>
+                            <p>{content}</p>
+                            <p>{comments} reacties | {shares} keer gedeeld.</p>
+                            <Link to="/alle-blog-posts" className="back-to-overview">Terug naar de
+                                overzichtspagina</Link>
+                        </article>
                     </div>
                 </article>
             )
-        }
+            }
         </>
     );
 }

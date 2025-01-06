@@ -9,6 +9,15 @@
     width: 100%;
 }
 
+.blog-card {
+    background-color: var(--color-grey);
+    padding: 2em;
+    margin: 2em 0;
+    border-radius: 0.5em;
+    border: 2px solid var(--color-secondary);
+    width: 100%;
+}
+
 .blog-detail h1,
 .blog-detail p {
     text-align: left;
