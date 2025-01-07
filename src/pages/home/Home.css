@@ -1,0 +1,26 @@
+.home {
+    align-items: center;
+    text-align: center;
+    flex: 0 1 auto;
+    height: auto;
+}
+
+.home h1 {
+    width: 90%;
+}
+
+.home-page-text {
+    width: 70%;
+}
+
+.billboard-image-wrapper {
+    width: 70%;
+}
+
+.billboard-image-wrapper img {
+    width: 100%;
+}
+
+@media  {
+    
+}
