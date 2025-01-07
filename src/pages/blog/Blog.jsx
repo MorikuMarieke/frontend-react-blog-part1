@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import './Blog.css';
 import InputField from "../../components/inputField/InputField.jsx";
 import Button from "../../components/button/Button.jsx";
@@ -23,8 +23,8 @@ function Blog() {
     const [errorMessage, setErrorMessage] = useState(null)
 
     async function handleSubmit(event) {
+        setErrorMessage(false);
         event.preventDefault();
-
         try {
             const response = await axios.post(`http://localhost:3000/posts`,
                 {
